@@ -60,7 +60,10 @@ function App() {
   }
 
   useEffect(()=>{
-    const defaultData = JSON.parse(localStorage.getItem("ToDo"))
+    let defaultData = []
+    if (localStorage.getItem("ToDo") !== null) {
+      defaultData = JSON.parse(localStorage.getItem("ToDo"))
+    }
     setTasks(defaultData)
   },[])
   
