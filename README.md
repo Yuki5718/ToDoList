@@ -1,19 +1,21 @@
 ToDoList 技術與架構說明
 1. 技術說明
-前端框架：React
-狀態管理：React 內建的 useState 和 useEffect Hooks
-樣式：SCSS、Bootstrap
-打包工具：Vite
-程式碼規範：ESLint
+- 前端框架：React
+- 狀態管理：React 內建的 useState 和 useEffect Hooks
+- 樣式：SCSS、Bootstrap
+- 打包工具：Vite
+- 程式碼規範：ESLint
 2. 架構設計
 - 使用 useState 管理清單狀態、新增內容、篩選狀態
 - 使用 useEffect 處理副作用，進行初次渲染（將資料從 LocalStorage 載入）
 - 資料結構：每個代辦事項皆具備「內容」與「兩種狀態」（是否完成、是否釘選）
+```js
   {
     content: string,
     completed: boolean,
     pinned: boolean
   }
+```
 - handleUpdateTasks函式統一處理資料更新，根據傳入的更新類型進行資料處理
 功能模組：
 - 新增功能：透過欄位輸入，點擊按鈕新增到清單
@@ -25,8 +27,8 @@ ToDoList 技術與架構說明
 3. 資料儲存
 前端儲存：使用 LocalStorage 儲存任務資料，確保頁面刷新後資料不丟失
 4. 運行流程
-用戶打開應用，React 渲染初始任務清單
-（從 LocalStorage 載入，若 LocalStorage 無資料則顯示「立刻開始建立清單」提示）
-用戶透過輸入欄新增代辦項目內容，點擊新增觸發狀態更新，組件重新渲染
-用戶點擊刪除、完成、釘選代辦事項，更新狀態並同步儲存
-篩選功能動態顯示符合條件的代辦項目
+- 用戶打開應用，React 渲染初始任務清單
+- （從 LocalStorage 載入，若 LocalStorage 無資料則顯示「立刻開始建立清單」提示）
+- 用戶透過輸入欄新增代辦項目內容，點擊新增觸發狀態更新，組件重新渲染
+- 用戶點擊刪除、完成、釘選代辦事項，更新狀態並同步儲存
+- 篩選功能動態顯示符合條件的代辦項目
