@@ -1,12 +1,32 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ToDoList 技術與架構說明
+1. 技術說明
+前端框架：React
+狀態管理：React 內建的 useState 和 useEffect Hooks
+樣式：SCSS、Bootstrap
+打包工具：Vite
+程式碼規範：ESLint
+2. 架構設計
+- 使用 useState 管理清單狀態、新增內容、篩選狀態
+- 使用 useEffect 處理副作用，進行初次渲染（將資料從 LocalStorage 載入）
+- 資料結構：每個代辦事項皆具備「內容」與「兩種狀態」（是否完成、是否釘選）
+  {
+    content: string,
+    completed: boolean,
+    pinned: boolean
+  }
+- handleUpdateTasks函式統一處理資料更新，根據傳入的更新類型進行資料處理
+功能模組：
+- 新增功能：透過欄位輸入，點擊按鈕新增到清單
+- 刪除功能：點擊代辦事項旁的刪除按鈕，將移除該筆資料
+- 全部刪除：清單內容超過兩筆後才可使用，點擊後將清除所有代辦事項
+- 標記完成：切換完成狀態
+- 標記釘選：切換釘選狀態，被釘選的內容將置頂顯示
+- 篩選功能：可透過標籤選擇，顯示已完成或未完成的內容
+3. 資料儲存
+前端儲存：使用 LocalStorage 儲存任務資料，確保頁面刷新後資料不丟失
+4. 運行流程
+用戶打開應用，React 渲染初始任務清單
+（從 LocalStorage 載入，若 LocalStorage 無資料則顯示「立刻開始建立清單」提示）
+用戶透過輸入欄新增代辦項目內容，點擊新增觸發狀態更新，組件重新渲染
+用戶點擊刪除、完成、釘選代辦事項，更新狀態並同步儲存
+篩選功能動態顯示符合條件的代辦項目
