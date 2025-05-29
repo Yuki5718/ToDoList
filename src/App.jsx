@@ -78,7 +78,7 @@ function App() {
 
       <div className='w-50 mx-auto d-flex mb-3'>
         <input
-          type="text" placeholder='請輸入代辦事項...'
+          type="text" placeholder='請輸入待辦事項...'
           value={newTask}
           className='form-control' 
           onChange={handleCreateInputChange}
