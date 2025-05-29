@@ -15,6 +15,11 @@ function App() {
     setNewTask(e.target.value)
   }
 
+  const handleCreateInputPressEnter = (e) => {
+    if (e.key !== 'Enter') return;
+    handleUpdateTasks('create')
+  }
+
   const handleUpdateTasks = (type,index) => {
     switch (type) {
       case "create":{
@@ -76,7 +81,8 @@ function App() {
           type="text" placeholder='請輸入代辦事項...'
           value={newTask}
           className='form-control' 
-          onChange={(e)=>handleCreateInputChange(e)}
+          onChange={handleCreateInputChange}
+          onKeyDown={handleCreateInputPressEnter}
         />
         <button
           className='btn btn-primary flex-shrink-0 ms-2'
